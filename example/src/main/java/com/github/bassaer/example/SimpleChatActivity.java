@@ -38,6 +38,8 @@ public class SimpleChatActivity extends Activity {
 
         ArrayList<Message> messages = new ArrayList<>();
 
+        int unicode = 0x1F60A;
+
         for (int i = 0; i < 10; i++) {
             Message message1 = new Message.Builder()
                     .setUser(me)
@@ -46,7 +48,7 @@ public class SimpleChatActivity extends Activity {
                     .build();
             Message message2 = new Message.Builder()
                     .setUser(you)
-                    .setText(you.getName() + " " + i)
+                    .setText(you.getName() + " " + getEmojiByUnicode(unicode) + " " + i)
                     .setRight(false)
                     .build();
             messages.add(message1);
@@ -56,5 +58,9 @@ public class SimpleChatActivity extends Activity {
         MessageView messageView = findViewById(R.id.message_view);
         messageView.init(messages);
 
+    }
+
+    public String getEmojiByUnicode(int unicode){
+        return new String(Character.toChars(unicode));
     }
 }

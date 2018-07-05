@@ -114,6 +114,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile "com.android.support:support-v4:26.1.0"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.vanniktech:emoji-ios:0.5.1'
     testImplementation "org.robolectric:robolectric:3.6.1"
     testCompile "org.mockito:mockito-core:2.13.0"
 }
@@ -163,4 +164,16 @@ uploadArchives {
 repositories {
     mavenCentral()
     google()
+}
+
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.4.0'
+            }
+        }
+    }
 }
