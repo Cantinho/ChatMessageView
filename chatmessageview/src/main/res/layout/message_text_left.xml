@@ -4,9 +4,10 @@
     android:id="@+id/message_text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/message_text_shape_left"
+    android:background="@drawable/left_chat_message_border"
     android:gravity="left"
     android:maxWidth="@dimen/width_normal"
     android:padding="@dimen/spacing_micro"
     android:text="@string/default_text_long"
+    android:textColor="@android:color/black"
     android:textSize="@dimen/font_normal"/>

@@ -1,6 +1,7 @@
 package com.github.bassaer.chatmessageview.view
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.View
@@ -201,12 +202,12 @@ class MessageView : ListView, View.OnFocusChangeListener {
         smoothScrollToPosition(count - 1)
     }
 
-    fun setLeftBubbleColor(color: Int) {
-        messageAdapter.setLeftBubbleColor(color)
+    fun setLeftBubbleDrawable(drawable: Drawable) {
+        messageAdapter.setLeftBubbleDrawable(drawable)
     }
 
-    fun setRightBubbleColor(color: Int) {
-        messageAdapter.setRightBubbleColor(color)
+    fun setRightBubbleDrawable(drawable: Drawable) {
+        messageAdapter.setRightBubbleDrawable(drawable)
     }
 
     fun setUsernameTextColor(color: Int) {

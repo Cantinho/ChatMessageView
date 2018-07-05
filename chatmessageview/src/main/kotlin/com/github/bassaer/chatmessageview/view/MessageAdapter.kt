@@ -39,10 +39,10 @@ class MessageAdapter(context: Context, resource: Int, private val objects: List<
     private var usernameTextColor = ContextCompat.getColor(getContext(), R.color.blueGray500)
     private var sendTimeTextColor = ContextCompat.getColor(getContext(), R.color.blueGray500)
     private var dateLabelColor = ContextCompat.getColor(getContext(), R.color.blueGray500)
-    private var rightMessageTextColor = Color.WHITE
-    private var leftMessageTextColor = Color.BLACK
-    private var leftBubbleColor: Int = 0
-    private var rightBubbleColor: Int = 0
+    private var rightMessageTextColor = ContextCompat.getColor(getContext(), R.color.lightGray)
+    private var leftMessageTextColor = ContextCompat.getColor(getContext(), R.color.lightGray)
+    private var leftBubbleDrawable: Drawable = ContextCompat.getDrawable(context, R.drawable.left_chat_message_border)
+    private var rightBubbleDrawable: Drawable = ContextCompat.getDrawable(context, R.drawable.right_chat_message_border)
     private var statusColor = ContextCompat.getColor(getContext(), R.color.blueGray500)
     /**
      * Default message item margin top
@@ -56,8 +56,8 @@ class MessageAdapter(context: Context, resource: Int, private val objects: List<
     init {
         viewTypes.add(String::class.java)
         viewTypes.add(Message::class.java)
-        leftBubbleColor = ContextCompat.getColor(context, R.color.default_left_bubble_color)
-        rightBubbleColor = ContextCompat.getColor(context, R.color.default_right_bubble_color)
+        leftBubbleDrawable = ContextCompat.getDrawable(context, R.drawable.left_chat_message_border)
+        rightBubbleDrawable = ContextCompat.getDrawable(context, R.drawable.right_chat_message_border)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -196,11 +196,9 @@ class MessageAdapter(context: Context, resource: Int, private val objects: List<
                             messageViewHolder.mainMessageContainer).let {
                         messageViewHolder.messageLink = it.findViewById(R.id.message_link)
                         messageViewHolder.messageLink?.text = message.text
-                        //Set bubble color
-                        setColorDrawable(
-                                if (message.isRight) rightBubbleColor else leftBubbleColor,
-                                messageViewHolder.messageLink?.background
-                        )
+                        //Set bubble drawable
+                        messageViewHolder.messageLink?.setBackgroundResource(if (message.isRight)
+                            R.drawable.right_chat_message_border else R.drawable.left_chat_message_border)
                         //Set message text color
                         messageViewHolder.messageLink?.setTextColor(
                                 if (message.isRight) rightMessageTextColor else leftMessageTextColor
@@ -214,10 +212,8 @@ class MessageAdapter(context: Context, resource: Int, private val objects: List<
                         messageViewHolder.messageText = it.findViewById(R.id.message_text)
                         messageViewHolder.messageText?.setTextIsSelectable(attribute.isTextSelectable)
                         messageViewHolder.messageText?.text = message.text
-                        setColorDrawable(
-                                if (message.isRight) rightBubbleColor else leftBubbleColor,
-                                messageViewHolder.messageText?.background
-                        )
+                        messageViewHolder.messageText?.setBackgroundResource(if (message.isRight)
+                            R.drawable.right_chat_message_border else R.drawable.left_chat_message_border)
                         messageViewHolder.messageText?.setTextColor(
                                 if (message.isRight) rightMessageTextColor else leftMessageTextColor
                         )
@@ -279,20 +275,20 @@ class MessageAdapter(context: Context, resource: Int, private val objects: List<
     }
 
     /**
-     * Set left bubble background color
-     * @param color left bubble color
+     * Set left bubble background drawable
+     * @param drawable left bubble drawable
      */
-    fun setLeftBubbleColor(color: Int) {
-        leftBubbleColor = color
+    fun setLeftBubbleDrawable(drawable: Drawable) {
+        leftBubbleDrawable = drawable
         notifyDataSetChanged()
     }
 
     /**
-     * Set right bubble background color
-     * @param color right bubble color
+     * Set right bubble background drawable
+     * @param color right bubble drawable
      */
-    fun setRightBubbleColor(color: Int) {
-        rightBubbleColor = color
+    fun setRightBubbleDrawable(drawable: Drawable) {
+        rightBubbleDrawable = drawable
         notifyDataSetChanged()
     }
 

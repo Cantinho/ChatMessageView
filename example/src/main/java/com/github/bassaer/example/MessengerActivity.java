@@ -49,7 +49,7 @@ public class MessengerActivity extends Activity {
     @VisibleForTesting
     protected static final int OPTION_BUTTON_COLOR = R.color.teal500;
     @VisibleForTesting
-    protected static final int RIGHT_MESSAGE_TEXT_COLOR = Color.WHITE;
+    protected static final int RIGHT_MESSAGE_TEXT_COLOR = Color.BLACK;
     @VisibleForTesting
     protected static final int LEFT_MESSAGE_TEXT_COLOR = Color.BLACK;
     @VisibleForTesting
@@ -86,9 +86,10 @@ public class MessengerActivity extends Activity {
         loadMessages();
 
         //Set UI parameters if you need
-        mChatView.setRightBubbleColor(ContextCompat.getColor(this,RIGHT_BUBBLE_COLOR));
-        mChatView.setLeftBubbleColor(ContextCompat.getColor(this, LEFT_BUBBLE_COLOR));
-        mChatView.setBackgroundColor(ContextCompat.getColor(this, BACKGROUND_COLOR));
+        mChatView.setRightBubbleDrawable(ContextCompat
+            .getDrawable(this, R.drawable.right_chat_message_border));
+        mChatView.setLeftBubbleDrawable(ContextCompat.getDrawable(this, R.drawable.left_chat_message_border));
+        //mChatView.setBackgroundColor(ContextCompat.getColor(this, BACKGROUND_COLOR));
         mChatView.setSendButtonColor(ContextCompat.getColor(this, SEND_BUTTON_COLOR));
         mChatView.setSendIcon(SEND_ICON);
         mChatView.setOptionIcon(R.drawable.ic_account_circle);

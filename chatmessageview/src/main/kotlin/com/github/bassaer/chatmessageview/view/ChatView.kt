@@ -94,12 +94,12 @@ class ChatView : LinearLayout {
         messageView.requestFocus()
     }
 
-    fun setLeftBubbleColor(color: Int) {
-        messageView.setLeftBubbleColor(color)
+    fun setLeftBubbleDrawable(drawable: Drawable) {
+        messageView.setLeftBubbleDrawable(drawable)
     }
 
-    fun setRightBubbleColor(color: Int) {
-        messageView.setRightBubbleColor(color)
+    fun setRightBubbleDrawable(drawable: Drawable) {
+        messageView.setRightBubbleDrawable(drawable)
     }
 
 
